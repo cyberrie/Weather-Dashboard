@@ -1,0 +1,13 @@
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.input-group {
+  flex-direction: column;
+  width: 40%;
+}
+
+.search-div {
+  margin: 10px !important;
+}
