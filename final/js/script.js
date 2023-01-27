@@ -1,15 +1,6 @@
 // API Key
 let apiKey = "9ed27dc20b6878421a84136c5fe9e945";
 
-// create variables for parameters
-// city
-//country
-// different url for future forecast?
-
-/// put the below in the eventListener for search button
-/// add a new button below for each city from the search
-/// grab the text of the city from search button
-
 // DOM elements
 let searchButton = document.querySelector("#search-button");
 let searchInput = document.querySelector("#search-input");
@@ -59,4 +50,18 @@ searchButton.addEventListener("click", function (event) {
 
   // Prepend every city
   cityList.prepend(cityButton);
+
+  // Empty array to store cities in localStorage
+  let cities = [];
+  // Push cities searched into this array
+  cities.push(city);
+
+  // Function to save cities to localStorage
+  function storeCitites() {
+    localStorage.setItem("cities", JSON.stringify(cities));
+    console.log(localStorage);
+  }
+  storeCitites();
+
+  // Function to retrieve cities from localStorage
 });
