@@ -56,14 +56,16 @@ searchButton.addEventListener("click", function (event) {
 
   weatherSearch(city);
 
-  // Push cities searched into this array
-  cities.push(city);
+  // Push cities searched into this array, check - if not there push, otherwise do not push
+  if (!cities.includes(city)) {
+    cities.push(city);
+    storeCitites();
+  }
   // Function to save cities to localStorage
   function storeCitites() {
     localStorage.setItem("cities", JSON.stringify(cities));
     console.log(localStorage);
   }
-  storeCitites();
 
   // Function to retrieve cities from localStorage
   renderCities(cities);
