@@ -5,6 +5,7 @@ let apiKey = "9ed27dc20b6878421a84136c5fe9e945";
 let searchButton = document.querySelector("#search-button");
 let searchInput = document.querySelector("#search-input");
 let cityList = document.querySelector(".city-list");
+let weatherToday = document.querySelector("#today");
 
 // Empty array to store cities in localStorage
 let cities = [];
@@ -77,6 +78,7 @@ cityList.addEventListener("click", function (event) {
     console.log(event.target);
     let cityName = event.target.textContent;
     console.log(cityName);
+    weatherSearch(cityName);
   }
 });
 
@@ -109,15 +111,23 @@ function weatherSearch(cityName) {
     .then((cityData) => {
       // the below is the data from return fetch (queryURL2)
       console.log(cityData);
+      renderWeather(cityData);
     });
-
-  // city name
-  console.log();
-  // date
-  // weather icon
-  // temp
-  //humidity
-  //wind speed
 }
 
-weatherSearch("London");
+function renderWeather(weatherData) {
+  // city title
+  let cityTitle = weatherData.city.name;
+  let iconCode = weatherData.list[0].weather[0].icon;
+  let iconURL = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+
+  console.log(cityTitle);
+  let html = ` <h1>${cityTitle} (${moment(weatherData.dt).format(
+    "DD/MM/YYYY"
+  )}) <img src='${iconURL}'></h1>
+  <p>Temp</p>
+  <p>Wind</p>
+  <p>Humidity</p>`;
+
+  weatherToday.innerHTML = html;
+}
