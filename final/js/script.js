@@ -13,7 +13,7 @@ let apiKey = "9ed27dc20b6878421a84136c5fe9e945";
 // DOM elements
 let searchButton = document.querySelector("#search-button");
 let searchInput = document.querySelector("#search-input");
-let cityHistory = document.querySelector("#history");
+let cityList = document.querySelector(".city-list");
 
 // addEventListener on search button
 searchButton.addEventListener("click", function (event) {
@@ -46,26 +46,17 @@ searchButton.addEventListener("click", function (event) {
     })
 
     .then((response) => response.json())
-    .then((data) => {
+    .then((cityData) => {
       // the below is the data from return fetch (queryURL2)
-      console.log(data);
-    })
-
-    // append buttons with city names searched, below search button
-
-    .then((data) => {
-      // create new button element for each city
-      data.citiesFound.forEach((city) => {
-        let cityButton = document.createElement("button");
-        cityButton.innerHTML = city.name;
-        // add a click event listener to the button to test it first
-        cityButton.addEventListener("click", function (event) {
-          console.log(`Button for city ${city.name} was clicked!`);
-        });
-
-        // prepend the button to the cityHistory element
-        cityHistory.prepend(cityButton);
-      });
+      console.log(cityData);
     });
-  // take searchButton click event
+
+  // Create elements for every city searched
+  let cityButton = document.createElement("li");
+
+  // Assign text value
+  cityButton.innerHTML = city;
+
+  // Prepend every city
+  cityList.prepend(cityButton);
 });
