@@ -101,7 +101,7 @@ function weatherSearch(cityName) {
 
       // 2nd URL data request chained onto 1st URL data request
       let queryURL2 =
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${firstCity.lat}&lon=${firstCity.lon}&appid=` +
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${firstCity.lat}&lon=${firstCity.lon}&units=metric&appid=` +
         apiKey;
 
       return fetch(queryURL2);
@@ -125,7 +125,7 @@ function renderWeather(weatherData) {
   let html = ` <h1>${cityTitle} (${moment(weatherData.dt).format(
     "DD/MM/YYYY"
   )}) <img src='${iconURL}'></h1>
-  <p>Temp</p>
+  <p>Temp: ${Math.floor(weatherData.list[0].main.temp)} &#8451</p>
   <p>Wind</p>
   <p>Humidity</p>`;
 
