@@ -6,18 +6,84 @@ let searchButton = document.querySelector("#search-button");
 let searchInput = document.querySelector("#search-input");
 let cityList = document.querySelector(".city-list");
 
+// Empty array to store cities in localStorage
+let cities = [];
+
+// Runs when the page loads
+init();
+
+// check the local storage
+function init() {
+  // check if there are any stored cities
+  let storedCities = JSON.parse(localStorage.getItem("cities"));
+
+  // If cities are stored, update the cities array to it
+  if (storedCities) {
+    cities = storedCities;
+  }
+
+  // Function to render cities on the left
+  renderCities(cities);
+}
+
+function renderCities(cities) {
+  // Empty cityList
+  cityList.innerHTML = "";
+
+  for (let i = 0; i < cities.length; i++) {
+    const city = cities[i];
+
+    // Create elements for every city searched
+    let cityButton = document.createElement("li");
+
+    // Assign text value
+    cityButton.innerHTML = city;
+
+    // Prepend every city
+    cityList.prepend(cityButton);
+  }
+}
+
+// if any data there, render on the left
+
+// render data function, get sfromv localstorage
+
 // addEventListener on search button
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
-  // store searchInput into variable
-  let city = searchInput.value;
-  console.log(city);
 
+  let city = searchInput.value;
+
+  weatherSearch(city);
+
+  // Push cities searched into this array
+  cities.push(city);
+  // Function to save cities to localStorage
+  function storeCitites() {
+    localStorage.setItem("cities", JSON.stringify(cities));
+    console.log(localStorage);
+  }
+  storeCitites();
+
+  // Function to retrieve cities from localStorage
+  renderCities(cities);
+});
+
+// event delegation for city buttons
+cityList.addEventListener("click", function (event) {
+  if (event.target.matches("li")) {
+    console.log(event.target);
+    let cityName = event.target.textContent;
+    console.log(cityName);
+  }
+});
+
+function weatherSearch(cityName) {
   // let city = "London";
 
   // URL 1 build
   let queryURL1 =
-    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` +
+    `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=` +
     apiKey;
 
   // We need this data first in order to make the 2nd request
@@ -25,6 +91,7 @@ searchButton.addEventListener("click", function (event) {
     .then((response) => response.json())
     .then((citiesFound) => {
       let firstCity = citiesFound[0];
+      console.log(firstCity);
       console.log(firstCity.lat);
       console.log(firstCity.lon);
 
@@ -42,26 +109,13 @@ searchButton.addEventListener("click", function (event) {
       console.log(cityData);
     });
 
-  // Create elements for every city searched
-  let cityButton = document.createElement("li");
+  // city name
+  console.log();
+  // date
+  // weather icon
+  // temp
+  //humidity
+  //wind speed
+}
 
-  // Assign text value
-  cityButton.innerHTML = city;
-
-  // Prepend every city
-  cityList.prepend(cityButton);
-
-  // Empty array to store cities in localStorage
-  let cities = [];
-  // Push cities searched into this array
-  cities.push(city);
-
-  // Function to save cities to localStorage
-  function storeCitites() {
-    localStorage.setItem("cities", JSON.stringify(cities));
-    console.log(localStorage);
-  }
-  storeCitites();
-
-  // Function to retrieve cities from localStorage
-});
+weatherSearch("London");
