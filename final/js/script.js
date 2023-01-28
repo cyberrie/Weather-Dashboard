@@ -7,6 +7,11 @@ let searchInput = document.querySelector("#search-input");
 let cityList = document.querySelector(".city-list");
 let weatherToday = document.querySelector("#today");
 let weatherForecast = document.querySelector("#forecast");
+let cardOneDiv = document.querySelector(".card-one-div");
+let cardTwoDiv = document.querySelector(".card-one-div");
+let cardThreeDiv = document.querySelector(".card-one-div");
+let cardFourDiv = document.querySelector(".card-one-div");
+let cardFiveDiv = document.querySelector(".card-one-div");
 
 // Empty array to store cities in localStorage
 let cities = [];
@@ -123,7 +128,7 @@ function weatherSearch(cityName) {
   let queryURL3 =
     `https://api.openweathermap.org/data/2.5/forecast?q=` +
     cityName +
-    `&appid=` +
+    `&units=metric&appid=` +
     apiKey;
 
   fetch(queryURL3)
@@ -138,6 +143,21 @@ function weatherSearch(cityName) {
         console.log(
           moment(filteredList[i].dt, "X").format("DD/MM/YYYY, HH:mm:ss")
         );
+
+        let forecastCard = `<div class="card" style="width: 10rem">
+        <div class="card-body">
+          <h5 class="card-title">${moment(filteredList[i].dt, "X").format(
+            "DD/MM/YYYY"
+          )}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Icon</h6>
+          <p class="card-text">Temp: ${Math.floor(
+            filteredList[i].main.temp
+          )} &#8451</p>
+          <p class="card-text">Wind: ${filteredList[i].wind.speed} KPH</p>
+          <p class="card-text">Humidity: ${filteredList[i].main.humidity} %</p>
+        </div>`;
+
+        weatherForecast.innerHTML += forecastCard;
       }
     });
 }
