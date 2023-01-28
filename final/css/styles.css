@@ -16,6 +16,22 @@ header {
   margin: 10px !important;
 }
 
+input {
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+button,
+li {
+  width: 100%;
+  height: 30px;
+  background-color: #ced2e9 !important;
+  border-radius: 5px;
+  margin: 5px 0 !important;
+  text-align: center;
+}
+
 .row {
   column-gap: 12px;
   row-gap: 8px;
