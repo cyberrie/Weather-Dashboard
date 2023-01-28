@@ -11,3 +11,7 @@
 .search-div {
   margin: 10px !important;
 }
+
+.row {
+  gap: 32px;
+}

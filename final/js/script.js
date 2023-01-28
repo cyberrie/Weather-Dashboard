@@ -126,8 +126,8 @@ function renderWeather(weatherData) {
     "DD/MM/YYYY"
   )}) <img src='${iconURL}'></h1>
   <p>Temp: ${Math.floor(weatherData.list[0].main.temp)} &#8451</p>
-  <p>Wind</p>
-  <p>Humidity</p>`;
+  <p>Wind: ${weatherData.list[0].wind.speed} KPH</p>
+  <p>Humidity: ${weatherData.list[0].main.humidity} %</p>`;
 
   weatherToday.innerHTML = html;
 }
