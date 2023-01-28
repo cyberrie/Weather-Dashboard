@@ -19,6 +19,8 @@ function init() {
   // check if there are any stored cities
   let storedCities = JSON.parse(localStorage.getItem("cities"));
 
+  let storedWeatherToday = JSON.parse(localStorage.getItem("weatherToday"));
+
   // If cities are stored, update the cities array to it
   if (storedCities) {
     cities = storedCities;
@@ -26,9 +28,13 @@ function init() {
 
   // Function to render cities on the left
   renderCities(cities);
+
+  // Function to render currentWeather
+
+  // Function to render 5-Day Forecast
 }
 
-// Function to rednder cities on the left
+// Function to render cities on the left
 function renderCities(cities) {
   // Empty cityList
   cityList.innerHTML = "";
@@ -139,12 +145,20 @@ function weatherSearch(cityName) {
           moment(filteredList[i].dt, "X").format("DD/MM/YYYY, HH:mm:ss")
         );
 
+        // Render icon
+        let iconCode = response5Day.list[i].weather[0].icon;
+        console.log(iconCode);
+
+        // iconUL obtained from API docs
+        let iconURL = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        console.log(iconURL);
+
         let forecastCard = `<div class="card" style="width: 10rem">
         <div class="card-body">
           <h5 class="card-title">${moment(filteredList[i].dt, "X").format(
             "DD/MM/YYYY"
           )}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Icon</h6>
+          <h6 class="card-subtitle mb-2 text-muted"> <img src='${iconURL}'></h6>
           <p class="card-text">Temp: ${Math.floor(
             filteredList[i].main.temp
           )} &#8451</p>
@@ -168,12 +182,12 @@ function renderWeather(weatherData) {
 
   console.log(cityTitle);
   // render data on the page
-  let html = ` <h1>${cityTitle} (${moment(weatherData.dt).format(
+  let htmlWeatherToday = ` <h1>${cityTitle} (${moment(weatherData.dt).format(
     "DD/MM/YYYY"
   )}) <img src='${iconURL}'></h1>
   <p>Temp: ${Math.floor(weatherData.list[0].main.temp)} &#8451</p>
   <p>Wind: ${weatherData.list[0].wind.speed} KPH</p>
   <p>Humidity: ${weatherData.list[0].main.humidity} %</p>`;
 
-  weatherToday.innerHTML = html;
+  weatherToday.innerHTML = htmlWeatherToday;
 }
