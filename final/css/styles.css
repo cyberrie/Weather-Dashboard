@@ -21,3 +21,22 @@
   display: flex;
   gap: 16px;
 }
+
+.card-body-current {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.card-body {
+  text-align: center;
+  background-color: rgba(9, 9, 50, 0.94);
+  color: white !important;
+  border-radius: 10px;
+}
+
+p {
+  margin-bottom: 5px !important;
+}
+
+h5 {
+  margin-top: 5px !important;
+}
