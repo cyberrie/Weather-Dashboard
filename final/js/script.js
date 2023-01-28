@@ -203,9 +203,9 @@ function renderWeather(weatherData) {
 
   console.log(cityTitle);
   // render data on the page
-  let htmlWeatherToday = ` <h1 style="text-align: left; margin-left: 5px !important">${cityTitle} (${moment(
+  let htmlWeatherToday = ` <h2 style="text-align: left">${cityTitle} (${moment(
     weatherData.dt
-  ).format("DD/MM/YYYY")}) <img src='${iconURL}'></h1>
+  ).format("DD/MM/YYYY")}) <img src='${iconURL}'></h2>
   <p style="text-align: left">Temp: ${Math.floor(
     weatherData.list[0].main.temp
   )} &#8451</p>
