@@ -3,6 +3,10 @@
   padding: 0 !important;
 }
 
+header {
+  background: linear-gradient(to right, #8d9ae6, #1425e3);
+}
+
 .input-group {
   flex-direction: column;
   width: 40%;
@@ -27,14 +31,16 @@
   border-radius: 10px;
 }
 .card-body {
-  text-align: center;
-  background-color: rgba(9, 9, 50, 0.94);
+  background: linear-gradient(#e66465, #9198e5);
   color: white !important;
   border-radius: 10px;
 }
 
-p {
+p,
+h1,
+h5 {
   margin-bottom: 5px !important;
+  margin-left: 10px !important;
 }
 
 h5 {
