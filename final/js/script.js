@@ -57,6 +57,8 @@ function renderCities(cities) {
 // addEventListener on search button
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
+  //Empty forecast div here
+  weatherForecast.innerHTML = "";
 
   // Assigned variable to input value
   let city = searchInput.value;
@@ -81,15 +83,14 @@ searchButton.addEventListener("click", function (event) {
 
 // event delegation for city buttons
 cityList.addEventListener("click", function (event) {
+  //Empty forecast div here
+  weatherForecast.innerHTML = "";
   if (event.target.matches("li")) {
     console.log(event.target);
     let cityName = event.target.textContent;
     console.log(cityName);
     weatherSearch(cityName);
   }
-
-  //Empty forecast div here
-  weatherForecast.innerHTML = "";
 });
 
 // API fetch for current forecast
@@ -147,6 +148,7 @@ function weatherSearch(cityName) {
       const filteredList = response5Day.list.filter(function (item) {
         return item.dt_txt.endsWith("12:00:00");
       });
+
       // loop through the first 5 elements of the filtered array - 5 days forecast for noon
       for (let i = 0; i < 5; i++) {
         console.log(
