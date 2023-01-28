@@ -13,7 +13,7 @@ let cities = [];
 // Runs when the page loads
 init();
 
-// check the local storage
+// Function to check the local storage when the page loads
 function init() {
   // check if there are any stored cities
   let storedCities = JSON.parse(localStorage.getItem("cities"));
@@ -27,6 +27,7 @@ function init() {
   renderCities(cities);
 }
 
+// Function to rednder cities on the left
 function renderCities(cities) {
   // Empty cityList
   cityList.innerHTML = "";
@@ -45,19 +46,17 @@ function renderCities(cities) {
   }
 }
 
-// if any data there, render on the left
-
-// render data function, get sfromv localstorage
-
 // addEventListener on search button
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
 
+  // Assigned variable to input value
   let city = searchInput.value;
 
+  // weatherSearch function with API data fetch
   weatherSearch(city);
 
-  // Push cities searched into this array, check - if not there push, otherwise do not push
+  // Push cities searched into this array, if already in don't push
   if (!cities.includes(city)) {
     cities.push(city);
     storeCitites();
@@ -93,6 +92,7 @@ function weatherSearch(cityName) {
   // We need this data first in order to make the 2nd request
   fetch(queryURL1)
     .then((response) => response.json())
+    // returns JS object with the city info only
     .then((citiesFound) => {
       let firstCity = citiesFound[0];
       console.log(firstCity);
@@ -104,13 +104,16 @@ function weatherSearch(cityName) {
         `https://api.openweathermap.org/data/2.5/forecast?lat=${firstCity.lat}&lon=${firstCity.lon}&units=metric&appid=` +
         apiKey;
 
+      // Chained promise - return on line 112
       return fetch(queryURL2);
     })
 
     .then((response) => response.json())
+    // returns JS object with the weather info on the searched city
     .then((cityData) => {
-      // the below is the data from return fetch (queryURL2)
       console.log(cityData);
+
+      // Render weather information on the page with the cityData as argument
       renderWeather(cityData);
     });
 }
@@ -118,10 +121,13 @@ function weatherSearch(cityName) {
 function renderWeather(weatherData) {
   // city title
   let cityTitle = weatherData.city.name;
+  // weather icon
   let iconCode = weatherData.list[0].weather[0].icon;
+  // iconUL obtained from API docs
   let iconURL = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
   console.log(cityTitle);
+  // render data on the page
   let html = ` <h1>${cityTitle} (${moment(weatherData.dt).format(
     "DD/MM/YYYY"
   )}) <img src='${iconURL}'></h1>
