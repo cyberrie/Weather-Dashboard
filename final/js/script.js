@@ -86,6 +86,9 @@ cityList.addEventListener("click", function (event) {
     console.log(cityName);
     weatherSearch(cityName);
   }
+
+  //Empty forecast div here
+  weatherForecast.innerHTML = "";
 });
 
 // API fetch for current forecast
@@ -122,6 +125,7 @@ function weatherSearch(cityName) {
       console.log(cityData);
 
       // Render weather information on the page with the cityData as argument
+
       renderWeather(cityData);
     });
 

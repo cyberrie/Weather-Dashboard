@@ -13,7 +13,8 @@
 }
 
 .row {
-  gap: 32px;
+  column-gap: 12px;
+  row-gap: 8px;
 }
 
 .forecast-cards-div {
