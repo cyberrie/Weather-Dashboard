@@ -6,6 +6,7 @@ let searchButton = document.querySelector("#search-button");
 let searchInput = document.querySelector("#search-input");
 let cityList = document.querySelector(".city-list");
 let weatherToday = document.querySelector("#today");
+let weatherForecast = document.querySelector("#forecast");
 
 // Empty array to store cities in localStorage
 let cities = [];
@@ -81,6 +82,7 @@ cityList.addEventListener("click", function (event) {
   }
 });
 
+// API fetch for current forecast
 function weatherSearch(cityName) {
   // let city = "London";
 
@@ -116,8 +118,22 @@ function weatherSearch(cityName) {
       // Render weather information on the page with the cityData as argument
       renderWeather(cityData);
     });
+
+  // API for 5-day forecast
+  let queryURL3 =
+    `https://api.openweathermap.org/data/2.5/forecast?q=` +
+    cityName +
+    `&appid=` +
+    apiKey;
+
+  fetch(queryURL3)
+    .then((response) => response.json())
+    .then(function (response5Day) {
+      console.log(response5Day);
+    });
 }
 
+// Render current weather data
 function renderWeather(weatherData) {
   // city title
   let cityTitle = weatherData.city.name;
