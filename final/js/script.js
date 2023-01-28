@@ -27,16 +27,17 @@ function init() {
   // Function to render cities on the left
   renderCities(cities);
 
-  // retrieve weather today if any stored
+  // Retrieve weather today if any stored
   let storedWeatherToday = JSON.parse(localStorage.getItem("weatherToday"));
   if (storedWeatherToday) {
     // if stored render them on the page
     renderWeather(storedWeatherToday);
   }
 
-  // retrieve forecast
+  // Retrieve forecast
   let forecast = (weatherForecast.innerHTML =
     localStorage.getItem("forecastHTML"));
+  // check if anything saved and render if so
   if (forecast) {
     forecastHTML = forecast;
   }
@@ -74,10 +75,12 @@ searchButton.addEventListener("click", function (event) {
   weatherSearch(city);
 
   // Push cities searched into this array, if already in don't push
-  if (!cities.includes(city)) {
+  // if no value in the input don't push
+  if (city !== "" && !cities.includes(city)) {
     cities.push(city);
     storeCities();
   }
+
   // Function to save cities to localStorage
   function storeCities() {
     localStorage.setItem("cities", JSON.stringify(cities));
