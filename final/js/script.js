@@ -19,8 +19,6 @@ function init() {
   // check if there are any stored cities
   let storedCities = JSON.parse(localStorage.getItem("cities"));
 
-  let storedWeatherToday = JSON.parse(localStorage.getItem("weatherToday"));
-
   // If cities are stored, update the cities array to it
   if (storedCities) {
     cities = storedCities;
@@ -29,9 +27,12 @@ function init() {
   // Function to render cities on the left
   renderCities(cities);
 
-  // Function to render currentWeather
-
-  // Function to render 5-Day Forecast
+  // retrieve weather today if any stored
+  let storedWeatherToday = JSON.parse(localStorage.getItem("weatherToday"));
+  if (storedWeatherToday) {
+    // if stored render them on the page
+    renderWeather(storedWeatherToday);
+  }
 }
 
 // Function to render cities on the left
@@ -66,10 +67,10 @@ searchButton.addEventListener("click", function (event) {
   // Push cities searched into this array, if already in don't push
   if (!cities.includes(city)) {
     cities.push(city);
-    storeCitites();
+    storeCities();
   }
   // Function to save cities to localStorage
-  function storeCitites() {
+  function storeCities() {
     localStorage.setItem("cities", JSON.stringify(cities));
     console.log(localStorage);
   }
@@ -127,6 +128,9 @@ function weatherSearch(cityName) {
       // Render weather information on the page with the cityData as argument
 
       renderWeather(cityData);
+
+      // Store current weather
+      storeWeatherToday(cityData);
     });
 
   // API for 5-day forecast
@@ -194,4 +198,9 @@ function renderWeather(weatherData) {
   <p>Humidity: ${weatherData.list[0].main.humidity} %</p>`;
 
   weatherToday.innerHTML = htmlWeatherToday;
+}
+
+// Function to store current weather data to localStorage
+function storeWeatherToday(cityData) {
+  localStorage.setItem("weatherToday", JSON.stringify(cityData));
 }
