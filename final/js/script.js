@@ -33,6 +33,13 @@ function init() {
     // if stored render them on the page
     renderWeather(storedWeatherToday);
   }
+
+  // retrieve forecast
+  let forecast = (weatherForecast.innerHTML =
+    localStorage.getItem("forecastHTML"));
+  if (forecast) {
+    forecastHTML = forecast;
+  }
 }
 
 // Function to render cities on the left
@@ -178,6 +185,7 @@ function weatherSearch(cityName) {
 
         weatherForecast.innerHTML += forecastCard;
       }
+      localStorage.setItem("forecastHTML", weatherForecast.innerHTML);
     });
 }
 
@@ -192,12 +200,16 @@ function renderWeather(weatherData) {
 
   console.log(cityTitle);
   // render data on the page
-  let htmlWeatherToday = ` <h1>${cityTitle} (${moment(weatherData.dt).format(
-    "DD/MM/YYYY"
-  )}) <img src='${iconURL}'></h1>
-  <p>Temp: ${Math.floor(weatherData.list[0].main.temp)} &#8451</p>
-  <p>Wind: ${weatherData.list[0].wind.speed} KPH</p>
-  <p>Humidity: ${weatherData.list[0].main.humidity} %</p>`;
+  let htmlWeatherToday = ` <h1 style="text-align: left; margin-left: 5px !important">${cityTitle} (${moment(
+    weatherData.dt
+  ).format("DD/MM/YYYY")}) <img src='${iconURL}'></h1>
+  <p style="text-align: left">Temp: ${Math.floor(
+    weatherData.list[0].main.temp
+  )} &#8451</p>
+  <p style="text-align: left">Wind: ${weatherData.list[0].wind.speed} KPH</p>
+  <p style="text-align: left">Humidity: ${
+    weatherData.list[0].main.humidity
+  } %</p>`;
 
   weatherToday.innerHTML = htmlWeatherToday;
 }
