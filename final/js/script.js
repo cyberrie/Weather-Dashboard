@@ -129,7 +129,9 @@ function weatherSearch(cityName) {
   fetch(queryURL3)
     .then((response) => response.json())
     .then(function (response5Day) {
-      console.log(response5Day);
+      console.log(
+        moment(response5Day.list[6].dt, "X").format("DD/MM/YYYY, HH:mm:ss")
+      );
     });
 }
 
