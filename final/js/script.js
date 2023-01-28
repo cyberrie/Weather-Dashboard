@@ -7,11 +7,6 @@ let searchInput = document.querySelector("#search-input");
 let cityList = document.querySelector(".city-list");
 let weatherToday = document.querySelector("#today");
 let weatherForecast = document.querySelector("#forecast");
-let cardOneDiv = document.querySelector(".card-one-div");
-let cardTwoDiv = document.querySelector(".card-one-div");
-let cardThreeDiv = document.querySelector(".card-one-div");
-let cardFourDiv = document.querySelector(".card-one-div");
-let cardFiveDiv = document.querySelector(".card-one-div");
 
 // Empty array to store cities in localStorage
 let cities = [];
