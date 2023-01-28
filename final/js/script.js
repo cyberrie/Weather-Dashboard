@@ -129,9 +129,16 @@ function weatherSearch(cityName) {
   fetch(queryURL3)
     .then((response) => response.json())
     .then(function (response5Day) {
-      console.log(
-        moment(response5Day.list[6].dt, "X").format("DD/MM/YYYY, HH:mm:ss")
-      );
+      // Filter through the list array to only include forecast data for noon
+      const filteredList = response5Day.list.filter(function (item) {
+        return item.dt_txt.endsWith("12:00:00");
+      });
+      // loop through the first 5 elements of the filtered array - 5 days forecast for noon
+      for (let i = 0; i < 5; i++) {
+        console.log(
+          moment(filteredList[i].dt, "X").format("DD/MM/YYYY, HH:mm:ss")
+        );
+      }
     });
 }
 
