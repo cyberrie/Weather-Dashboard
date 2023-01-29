@@ -31,21 +31,18 @@ input {
   border-radius: 2px;
 }
 
+.search-button {
+  background-color: #030627 !important;
+  color: white !important;
+}
 button {
-  background-color: #ced2e9 !important;
-}
-
-li {
-  background-color: whitesmoke;
-}
-button,
-li {
   width: 100%;
   height: 30px;
   padding-top: 2px !important;
-  border-radius: 2px;
-  margin: 15px 0 !important;
+  margin: 5px 0 !important;
   text-align: center;
+  background-color: rgb(245, 245, 245);
+  border-radius: 5px !important;
 }
 
 .row {
