@@ -52,7 +52,7 @@ function renderCities(cities) {
     const city = cities[i];
 
     // Create elements for every city searched
-    let cityButton = document.createElement("li");
+    let cityButton = document.createElement("button");
 
     // Assign text value
     cityButton.innerHTML = city;
@@ -95,7 +95,7 @@ searchButton.addEventListener("click", function (event) {
 cityList.addEventListener("click", function (event) {
   //Empty forecast div here
   weatherForecast.innerHTML = "";
-  if (event.target.matches("li")) {
+  if (event.target.matches("button")) {
     console.log(event.target);
     let cityName = event.target.textContent;
     console.log(cityName);
