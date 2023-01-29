@@ -192,6 +192,9 @@ function forecastSearch(apiKey, cityName, weatherForecast) {
       const filteredList = response5Day.list.filter(function (item) {
         return item.dt_txt.endsWith("12:00:00");
       });
+
+      console.log("filteredList", filteredList);
+
       renderForecast(filteredList, weatherForecast, response5Day);
     });
 }
