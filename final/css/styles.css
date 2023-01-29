@@ -25,6 +25,10 @@ header {
   margin: 10px !important;
 }
 
+.search-button {
+  background: linear-gradient(to top left, #8d9ae6, #030627);
+}
+
 input {
   height: 40px;
   border: 1px solid black;
