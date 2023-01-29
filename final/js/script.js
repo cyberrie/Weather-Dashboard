@@ -91,7 +91,7 @@ searchButton.addEventListener("click", function (event) {
   renderCities(cities);
 });
 
-// event delegation for city buttons
+// Event delegation for city buttons
 cityList.addEventListener("click", function (event) {
   //Empty forecast div here
   weatherForecast.innerHTML = "";
@@ -103,11 +103,9 @@ cityList.addEventListener("click", function (event) {
   }
 });
 
-// API fetch for current forecast
+// API fetch for current weather
 function weatherSearch(cityName) {
-  // let city = "London";
-
-  // URL 1 build
+  // URL 1 build to find the city names and data
   let queryURL1 =
     `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=` +
     apiKey;
@@ -115,8 +113,9 @@ function weatherSearch(cityName) {
   // We need this data first in order to make the 2nd request
   fetch(queryURL1)
     .then((response) => response.json())
-    // returns JS object with the city info only
+    // returns JS object with the cities info only, 5 as limit=5 above
     .then((citiesFound) => {
+      // select the first city from the search result
       let firstCity = citiesFound[0];
       console.log(firstCity);
       console.log(firstCity.lat);
@@ -137,13 +136,17 @@ function weatherSearch(cityName) {
       console.log(cityData);
 
       // Render weather information on the page with the cityData as argument
-
       renderWeather(cityData);
 
-      // Store current weather
+      // Store current weather with cityData argument
       storeWeatherToday(cityData);
     });
 
+  forecastSearch(apiKey, cityName, weatherForecast);
+}
+
+// Function to search for forecast with the relevant arguments from weatherSearch
+function forecastSearch(apiKey, cityName, weatherForecast) {
   // API for 5-day forecast
   let queryURL3 =
     `https://api.openweathermap.org/data/2.5/forecast?q=` +
@@ -165,29 +168,31 @@ function weatherSearch(cityName) {
           moment(filteredList[i].dt, "X").format("DD/MM/YYYY, HH:mm:ss")
         );
 
-        // Render icon
+        // Render icon for each day of the forecast
         let iconCode = response5Day.list[i].weather[0].icon;
         console.log(iconCode);
 
-        // iconUL obtained from API docs
+        // iconURL obtained from API docs
         let iconURL = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
         console.log(iconURL);
 
+        // Append fetched forecast data for each day
         let forecastCard = `<div class="card" style="width: 10rem">
-        <div class="card-body">
-          <h5 class="card-title">${moment(filteredList[i].dt, "X").format(
-            "DD/MM/YYYY"
-          )}</h5>
-          <h6 class="card-subtitle mb-2 text-muted"> <img src='${iconURL}'></h6>
-          <p class="card-text">Temp: ${Math.floor(
-            filteredList[i].main.temp
-          )} &#8451</p>
-          <p class="card-text">Wind: ${filteredList[i].wind.speed} KPH</p>
-          <p class="card-text">Humidity: ${filteredList[i].main.humidity} %</p>
-        </div>`;
+    <div class="card-body">
+      <h5 class="card-title">${moment(filteredList[i].dt, "X").format(
+        "DD/MM/YYYY"
+      )}</h5>
+      <h6 class="card-subtitle mb-2 text-muted"> <img src='${iconURL}'></h6>
+      <p class="card-text">Temp: ${Math.floor(
+        filteredList[i].main.temp
+      )} &#8451</p>
+      <p class="card-text">Wind: ${filteredList[i].wind.speed} KPH</p>
+      <p class="card-text">Humidity: ${filteredList[i].main.humidity} %</p>
+    </div>`;
 
         weatherForecast.innerHTML += forecastCard;
       }
+      // Store forecast data in localStorage
       localStorage.setItem("forecastHTML", weatherForecast.innerHTML);
     });
 }
