@@ -79,23 +79,9 @@ The following animation demonstrates the application functionality:
 
 ## What I learned
 
-- Implementing DOM manipulation strategies using the jQuery library
-
-- Building small games using JavaScript and jQuery
-
-- Creating time-based operations using Moment
-
 ## Directions for future development
 
-- The app functionality: do not allow user to input and record any events in the hours that have passed
-
 ## Useful Resources
-
-- [Full-Stack Blog on how to use API keys](https://coding-boot-camp.github.io/full-stack/apis/how-to-use-api-keys)
-
-- [Moment.js](https://momentjs.com/)
-
-- [HTMLTextAreaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement)
 
 ## Author
 
