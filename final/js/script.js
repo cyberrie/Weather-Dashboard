@@ -194,18 +194,18 @@ function forecastSearch(apiKey, cityName, weatherForecast) {
       });
       console.log("filteredList", filteredList);
 
-      renderForecast(filteredList, weatherForecast, response5Day);
+      renderForecast(filteredList, weatherForecast);
     });
 }
 
 // Function to render forecast data with the neccessarry arguments from forecastSearch
-function renderForecast(filteredList, weatherForecast, response5Day) {
+function renderForecast(filteredList, weatherForecast) {
   // loop through the first 5 elements of the filtered array - 5 days forecast for noon
   for (let i = 0; i < 5; i++) {
     console.log(moment(filteredList[i].dt, "X").format("DD/MM/YYYY, HH:mm:ss"));
 
     // Render icon for each day of the forecast
-    let iconCode = response5Day.list[i].weather[0].icon;
+    let iconCode = filteredList[i].weather[0].icon;
     console.log(iconCode);
 
     // iconURL obtained from API docs
