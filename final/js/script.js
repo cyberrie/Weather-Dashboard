@@ -43,7 +43,26 @@ function init() {
   }
 }
 
-/******************************** SEARCH BUTTON ****************************************/
+/******************************** RENDER CITIES ****************************************/
+// Function to render cities on the left
+function renderCities(cities) {
+  // Empty cityList
+  cityList.innerHTML = "";
+
+  for (let i = 0; i < cities.length; i++) {
+    const city = cities[i];
+
+    // Create elements for every city searched
+    let cityButton = document.createElement("button");
+
+    // Assign text value
+    cityButton.innerHTML = city;
+
+    // Prepend every city
+    cityList.prepend(cityButton);
+  }
+}
+
 // addEventListener on search button
 searchButton.addEventListener("click", function (event) {
   event.preventDefault();
@@ -61,26 +80,6 @@ searchButton.addEventListener("click", function (event) {
   if (city !== "" && !cities.includes(city)) {
     cities.push(city);
     storeCities();
-  }
-
-  /******************************** CITIES - LEFT ****************************************/
-  // Function to render cities on the left
-  function renderCities(cities) {
-    // Empty cityList
-    cityList.innerHTML = "";
-
-    for (let i = 0; i < cities.length; i++) {
-      const city = cities[i];
-
-      // Create elements for every city searched
-      let cityButton = document.createElement("button");
-
-      // Assign text value
-      cityButton.innerHTML = city;
-
-      // Prepend every city
-      cityList.prepend(cityButton);
-    }
   }
 
   // Function to save cities to localStorage
