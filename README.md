@@ -8,10 +8,10 @@
 - [Links](#links)
 - [Built with](#built-with)
 - [What I learned](#what-i-learned)
-- [Directions for future development](#directions-for-future-development)
+- [Future Development](#future-development)
 - [Useful resources](#useful-resources)
+- [Acknowledgements](#acknowledgements)
 - [Author](#author)
-- [License](#license)
 
 ## Overview
 
@@ -63,7 +63,7 @@ The following animation demonstrates the application functionality:
 
 - You will be able to acces the app URL if you navigate into Settings → Pages inside this repository
 
-- Or, click on this link: [Weather Dashboard]()
+- Or, click on this link: [Weather Dashboard](https://cyberrie.github.io/Weather-Dashboard/)
 
 ## Built with...
 
@@ -79,9 +79,28 @@ The following animation demonstrates the application functionality:
 
 ## What I learned
 
-## Directions for future development
+- Accessing the data from a backend server (access to information stored in databases) and fetch it on-demand to update my apps
+
+- The concept of server-side APIs and the use of AJAX queries to retrieve and parse data in the JSON format;
+
+  - Access data on RESTful web APIs using AJAX calls
+  - Understand and utilize the concept and utility of APIs and JSON in web applications
+  - Build endpoint URLs to a variety of APIs
+  - Worked with the OMDb and Giphy APIs to build data-rich applications
+  - Process returned data to isolate key elements that you'll use with JavaScript logic
+  - Generate page elements based on API responses
+
+#### Toughest climb?
+
+-
+
+## Future Development
+
+- Specify to the user, that the city data has to be written with a capital letter
 
 ## Useful Resources
+
+## Acknowledgements
 
 ## Author
 
