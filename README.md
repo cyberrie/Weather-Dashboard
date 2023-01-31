@@ -102,6 +102,12 @@ The following animation demonstrates the application functionality:
 
 ## Useful Resources
 
+- [OpenWeather API](https://openweathermap.org/api)
+
+- [Fetching data from the server](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data)
+
+- [JavaScript Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
 ## Author
 
 ©️ 2023 Helena Gilja. All Rights Reserved.
@@ -109,3 +115,5 @@ The following animation demonstrates the application functionality:
 - GitHub - [cyberrie](https://github.com/cyberrie)
 
 ## Acknowledgements
+
+✨ Big thanks to my tutor Dane for answering all my questions during this project! ✨
