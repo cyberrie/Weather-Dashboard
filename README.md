@@ -10,8 +10,8 @@
 - [What I learned](#what-i-learned)
 - [Future Development](#future-development)
 - [Useful resources](#useful-resources)
-- [Acknowledgements](#acknowledgements)
 - [Author](#author)
+- [Acknowledgements](#acknowledgements)
 
 ## Overview
 
@@ -57,7 +57,7 @@ The app functionality:
 
 The following animation demonstrates the application functionality:
 
-![Weather Dashboard]()
+![Weather Dashboard](./assets/weather-forecast.gif)
 
 ## Links
 
@@ -92,7 +92,9 @@ The following animation demonstrates the application functionality:
 
 #### Toughest climb?
 
--
+- The most challenging part of this project was correctly accessing desired data by building endpoint URLs
+
+- The key message is to always read the Docs and test the data before proceeding further
 
 ## Future Development
 
@@ -100,10 +102,10 @@ The following animation demonstrates the application functionality:
 
 ## Useful Resources
 
-## Acknowledgements
-
 ## Author
 
 ©️ 2023 Helena Gilja. All Rights Reserved.
 
 - GitHub - [cyberrie](https://github.com/cyberrie)
+
+## Acknowledgements
